@@ -48,6 +48,13 @@ if not os.path.isdir(NINJA_ENV):
     create_environment(NINJA_ENV)
 if not os.path.isdir(NINJA_ENV_BIN):
     NINJA_ENV_BIN = os.path.join(NINJA_ENV, "Scripts")
+
+if not os.path.exists(os.path.join(NINJA_ENV_BIN,'activate_this.py')):
+    source = open(os.path.join(os.path.dirname(__file__),'activate_this.py'))
+    target = open(os.path.join(NINJA_ENV_BIN,'activate_this.py'),'wb')
+    target.write(source.read())
+    source.close()
+    target.close()
     
 NINJA_ENV_ACTIVATE = os.path.join(NINJA_ENV_BIN, "activate_this.py")
 
